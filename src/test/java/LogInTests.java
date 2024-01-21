@@ -11,47 +11,34 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LogInTests {
-    private WebDriver driver;
-
+public class LogInTests extends BaseTests{
     @Test
     public void LogInMainPage() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/");
 
         MainPageStellarBurgers objMainPage = new MainPageStellarBurgers(driver);
         objMainPage.clickLogInButtonMainPage();
 
         LogIn();
 
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(objMainPage.createOrderButtonMainPage));
+        super.AssertExists(objMainPage.createOrderButtonMainPage);
     }
 
     @Test
     public void LogInFromPersonalAccountButton() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/");
 
         MainPageStellarBurgers objMainPage = new MainPageStellarBurgers(driver);
         objMainPage.clickHeaderPersonalAccountButton();
 
         LogIn();
 
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(objMainPage.createOrderButtonMainPage));
+        super.AssertExists(objMainPage.createOrderButtonMainPage);
     }
 
     @Test
     public void LogInFromRegistrationForm() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/register");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/register");
 
         SignInPageStellarBurgers singInPage = new SignInPageStellarBurgers(driver);
         singInPage.clickLoginLink();
@@ -59,16 +46,12 @@ public class LogInTests {
         LogIn();
 
         MainPageStellarBurgers objMainPage = new MainPageStellarBurgers(driver);
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(objMainPage.createOrderButtonMainPage));
+        super.AssertExists(objMainPage.createOrderButtonMainPage);
     }
 
     @Test
     public void LogInFromForgotPasswordForm() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/forgot-password");
 
         ForgotPasswordPageStellarBurgers forgotPasswordPage = new ForgotPasswordPageStellarBurgers(driver);
         forgotPasswordPage.clickLoginLink();
@@ -76,8 +59,7 @@ public class LogInTests {
         LogIn();
 
         MainPageStellarBurgers objMainPage = new MainPageStellarBurgers(driver);
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(objMainPage.createOrderButtonMainPage));
+        super.AssertExists(objMainPage.createOrderButtonMainPage);
     }
 
     @After

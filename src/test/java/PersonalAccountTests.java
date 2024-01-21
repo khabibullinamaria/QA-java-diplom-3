@@ -9,29 +9,21 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PersonalAccountTests {
-    private WebDriver driver;
+public class PersonalAccountTests extends BaseTests {
 
     @Test
     public void OpenProfileTest() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/login");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/login");
 
         LogInAndEnterProfile();
 
         ProfilePageStellarBurgers profilePage = new ProfilePageStellarBurgers(driver);
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(profilePage.profileTab));
+        super.AssertExists(profilePage.profileTab);
     }
 
     @Test
     public void OpenConstructorTest() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/login");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/login");
 
         LogInAndEnterProfile();
 
@@ -40,16 +32,12 @@ public class PersonalAccountTests {
 
         ConstructorPageStellarBurgers constructorPage = new ConstructorPageStellarBurgers(driver);
 
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(constructorPage.constructorHeader));
+        super.AssertExists(constructorPage.constructorHeader);
     }
 
     @Test
     public void OpenConstructorByLogoTest() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/login");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/login");
 
         LogInAndEnterProfile();
 
@@ -58,16 +46,12 @@ public class PersonalAccountTests {
 
         ConstructorPageStellarBurgers constructorPage = new ConstructorPageStellarBurgers(driver);
 
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(constructorPage.constructorHeader));
+        super.AssertExists(constructorPage.constructorHeader);
     }
 
     @Test
     public void ExitTest() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/login");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/login");
 
         LogInAndEnterProfile();
 
@@ -77,8 +61,7 @@ public class PersonalAccountTests {
         profilePage.clickExitButton();
 
         EnterPageStellarBurgers enterPage = new EnterPageStellarBurgers(driver);
-        new WebDriverWait(driver, 3)
-                .until(ExpectedConditions.visibilityOfElementLocated(enterPage.logInButton));
+        super.AssertExists(enterPage.logInButton);
     }
 
     @After

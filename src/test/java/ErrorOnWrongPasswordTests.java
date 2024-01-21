@@ -14,8 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 @RunWith(Parameterized.class)
-public class ErrorOnWrongPasswordTests {
-        private WebDriver driver;
+public class ErrorOnWrongPasswordTests extends BaseTests{
         private final String name;
         private final String email;
         private final String password;
@@ -37,10 +36,7 @@ public class ErrorOnWrongPasswordTests {
     }
     @Test
     public void signInStellarBurgers() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        super.InitDriver("https://stellarburgers.nomoreparties.site/");
 
         MainPageStellarBurgers objMainPage = new MainPageStellarBurgers(driver);
         objMainPage.clickHeaderPersonalAccountButton();
